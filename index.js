@@ -18,26 +18,20 @@ app.use(express.json());
 // ki
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jvpmw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jvpmw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, });
+// client.connect(err => {
+//   const collection = client.db("homeInventory").collection("users");
+//   // console.log('tawfiq ok ');
+//   client.close();
 });
 
-
-// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jvpmw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-// const client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
 
 async function run() {
   try {
     await client.connect();
-    const database = client.db("tourPackage");
+    const database = client.db("homeInventory");
     const productsCollection = database.collection("products");
     const orderCollection = database.collection("order");
     const reviewCollection = database.collection("review");
@@ -162,9 +156,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Niche Products Server Run");
+  res.send("home inventory Products Server Run");
 });
 
 app.listen(port, () => {
-  console.log("Niche Tawfiq product server at port", port);
+  console.log("home inventory product server at port", port);
 });
