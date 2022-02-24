@@ -25,7 +25,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 //   const collection = client.db("homeInventory").collection("users");
 //   // console.log('tawfiq ok ');
 //   client.close();
-});
+// });
 
 
 async function run() {
